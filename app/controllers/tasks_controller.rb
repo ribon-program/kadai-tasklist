@@ -1,12 +1,14 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:destroy, :show, :edit, :update]
+  
   
   def index
+    @tasks = Task.all
   end
   
   def show
+    @task = Task.find(params[:id])
   end
   
   def new
@@ -27,6 +29,7 @@ class TasksController < ApplicationController
   end
   
   def edit
+    @task = Task.find(tasks[:id])
   end
   
   def update
@@ -49,10 +52,6 @@ class TasksController < ApplicationController
   end  
   
   private
-  
-  def set_task
-    @task = Task.find(params[:id])
-  end  
   
   # Strong Parameter
   def task_params
