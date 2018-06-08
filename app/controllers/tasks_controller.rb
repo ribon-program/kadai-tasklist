@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy, :show, :edit, :update]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   
   def index
@@ -63,5 +63,6 @@ class TasksController < ApplicationController
     unless @task
       redirect_to root_url
     end
-  end  
+  end 
+    
 end
